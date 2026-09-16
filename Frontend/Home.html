@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parallel Mind</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #f5f7ff, #eef8ff);
+        color: #1d2433;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+
+      .nav {
+        background: #0f172a;
+        color: white;
+        padding: 18px 30px;
+        font-weight: bold;
+        letter-spacing: 0.04em;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 60px 20px 40px;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      .btn {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-top: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        padding: 24px;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">PARALLEL MIND</div>
+
+    <main class="container">
+      <section class="hero">
+        <h1>Think Better. Build Faster.</h1>
+        <p>
+          Parallel Mind helps you capture ideas, organize focus, and turn plans
+          into real progress.
+        </p>
+        <button class="btn" id="helloBtn">Say Hello</button>
+      </section>
+
+      <section class="card">
+        <h2>Server response</h2>
+        <p id="messageBox">Waiting for a response...</p>
+      </section>
+    </main>
+
+    <script>
+      const button = document.getElementById("helloBtn");
+      const messageBox = document.getElementById("messageBox");
+
+      button.addEventListener("click", async () => {
+        try {
+          const response = await fetch("/api/hello");
+          const data = await response.json();
+          messageBox.textContent = data.message;
+        } catch (error) {
+          messageBox.textContent = "Unable to reach the server right now.";
+        }
+      });
+    </script>
+  </body>
+</html>
